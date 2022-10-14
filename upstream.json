@@ -1,0 +1,26 @@
+[
+  {
+    "host": "localhost",
+    "port": 27017,
+    "name": "mongo",
+    "mode": "tcp"
+  },
+  {
+    "host": "localhost",
+    "port": 15432,
+    "name": "postgres",
+    "mode": "tcp"
+  },
+  {
+    "host": "10.10.10.10",
+    "port": 15439,
+    "name": "unknown",
+    "mode": "tcp"
+  },
+  {
+    "host": "11.11.11.11",
+    "port": 15440,
+    "name": "unknown11",
+    "mode": "tcp"
+  }
+]
