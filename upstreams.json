@@ -15,7 +15,7 @@
     "host": "10.10.10.10",
     "port": 15439,
     "name": "unknown",
-    "mode": "tcp"
+    "mode": "http_get"
   },
   {
     "host": "11.11.11.11",
