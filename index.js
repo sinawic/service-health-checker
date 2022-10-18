@@ -7,6 +7,8 @@ const app = express();
 const path = require('path');
 const router = express.Router();
 
+app.use('/static', express.static('static'))
+
 app.set("view engine", "ejs")
 
 router.get('/', function (req, res) {
@@ -50,6 +52,7 @@ console.log(`Started listening to ${upstreams.length} servers...`)
 
 const collectTCPInfo = (upstream, i) => {
   return new Promise((resolve) => {
+
     const client = new net.Socket();
 
     client.setTimeout(TIMEOUT, () => {
@@ -63,8 +66,12 @@ const collectTCPInfo = (upstream, i) => {
       // Logs when the connection is established
       upstream.res = `${i + 1}. ${upstream.name}:\t Connected \t\t ${upstream.host}:${upstream.port}`
       client.destroy()
-      resolve('done')
+      resolve(upstream)
     });
+
+    client.on("error", () => {
+      upstream.res = 'inaccessible'
+    })
   })
 
 }

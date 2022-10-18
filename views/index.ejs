@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Node service health checker</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
 </head>
 
 <body>
@@ -34,20 +34,25 @@
     <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
   </div>
 
-  <div>
-    <ul>
+  <div class="container">
+    <div class="row">
       <% data.forEach(function(dat) { %>
-        <li>
-          <%= dat.name %>
-        </li>
-        <li>
-          <%= dat.host%>:<%= dat.port%>
-        </li>
-        <li>
-          <%= dat.res%>
-        </li>
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= dat.name %>
+              </h5>
+              <p class="card-text">
+                <%= dat.host%>:<%= dat.port%>
+                    <br>
+                    <%= dat.res%>
+              </p>
+            </div>
+          </div>
+        </div>
         <% }); %>
-    </ul>
+    </div>
   </div>
 
 </body>
