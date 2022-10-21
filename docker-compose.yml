@@ -7,3 +7,4 @@ services:
     volumes:
       - ./upstreams.json:/app/upstreams.json
     restart: always
+    build: ./
