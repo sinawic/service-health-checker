@@ -22,5 +22,29 @@
     "port": 15440,
     "name": "unknown11",
     "mode": "tcp"
+  },
+  {
+    "host": "localhost",
+    "port": 3306,
+    "name": "mysql",
+    "mode": "tcp"
+  },
+  {
+    "host": "unknown.com",
+    "port": 80,
+    "name": "unknown",
+    "mode": "tcp"
+  },
+  {
+    "host": "stackoverflow.com",
+    "port": 80,
+    "name": "stackoverflow",
+    "mode": "tcp"
+  },
+  {
+    "host": "google.com",
+    "port": 80,
+    "name": "google",
+    "mode": "tcp"
   }
 ]
