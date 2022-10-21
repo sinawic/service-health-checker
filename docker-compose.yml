@@ -1,0 +1,9 @@
+version: '3'
+services:
+  health-checker:
+    image: service-health-checker:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - ./upstreams.json:/app/upstreams.json
+    restart: always
