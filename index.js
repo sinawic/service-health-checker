@@ -1,16 +1,23 @@
 // Get net module 
 const net = require('net');
+// load upstreams
 const upstreams = require('./upstreams.json')
 
+// required express stuff
 const express = require('express');
 const app = express();
-const path = require('path');
 const router = express.Router();
 
+// timeout for tcp connection
+TIMEOUT = 2000
+
+// to actually load static files like bootstrap ...
 app.use('/static', express.static('static'))
 
+// set the view engine to ejs to be able to redner ejs files to the ui
 app.set("view engine", "ejs")
 
+// main page get request handler
 router.get('/', function (req, res) {
   upstreams.map(async (upstream, i) => {
     if (upstream.mode === 'tcp')
@@ -25,31 +32,14 @@ router.get('/', function (req, res) {
   }); // index refers to index.ejs
 });
 
-//add the router
+//add the / router
 app.use('/', router);
-app.listen(process.env.port || 3000);
 
+// start listening on given port
+app.listen(process.env.port || 3000);
 console.log('Running at Port 3000');
 
-
-const INTERVAL = 5000, TIMEOUT = 2000
-
-console.log(`Started listening to ${upstreams.length} servers...`)
-// Connect to the server on the configured port 
-// setInterval(() => {
-
-//   upstreams.map((upstream, i) => {
-//     if (upstream.mode === 'tcp')
-//       collectTCPInfo(upstream, i)
-//     else
-//       console.log(`${i + 1}. any mode except for TCP (${upstream.mode}) not currently supported!`)
-
-//   })
-//   console.log('==========================================================')
-
-// }, INTERVAL);
-
-
+// function to make tcp connection to an upstream
 const collectTCPInfo = (upstream, i) => {
   return new Promise((resolve) => {
 
