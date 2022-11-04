@@ -1,9 +1,10 @@
 version: '3'
 services:
   health-checker:
-    image: service-health-checker:latest
+    image: sinawic/service-health-checker
     ports:
       - 3000:3000
     volumes:
       - ./upstreams.json:/app/upstreams.json
     restart: always
+    build: ./
