@@ -25,15 +25,6 @@
   <div class="jumbotron" style="padding:40px;">
     <div class="container">
       <h1>Service health checker app!</h1>
-      <!-- <p>
-        If you haven't defined any upstreams yet, just edit the <code>upstreams.json</code> file in the project root
-        dir.
-        sample data should look something like:
-      </p>
-      <code>
-            [{ "host": "11.11.11.11", "port": 15440, "name": "some_name", "mode": "tcp" }]
-          </code>
-      <hr> -->
       <p>upstream services defined: <strong>
           <%= data.length %>
         </strong></p>
@@ -45,11 +36,18 @@
       <p style="color: crimson">services down: <strong>
           <%= data.filter(d=> !d.result).length %>
         </strong></p>
+
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" style="width: 100px;" onclick="show('all')" class="btn btn-secondary">All</button>
+        <button type="button" style="width: 100px;" onclick="show('ups')" class="btn btn-success">Ups</button>
+        <button type="button" style="width: 100px;" onclick="show('downs')" class="btn btn-danger">Downs</button>
+      </div>
+
     </div>
   </div>
 
   <div class="container mt-5">
-    <div class="row">
+    <div id="services" class="row">
       <% data.forEach(function(dat) { %>
         <div class="col-6 col-sm-4 col-md-3 mb-4">
           <div class="card shadow-sm" style="height: 12rem; overflow: hidden" title="<%= dat.resultText%>">
@@ -72,6 +70,11 @@
         <% }); %>
     </div>
   </div>
+
+  <script>
+    const list = JSON.parse('<%- JSON.stringify(data) %>')
+  </script>
+  <script src="/static/app.js"></script>
 
 </body>
 
